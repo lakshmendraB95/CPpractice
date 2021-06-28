@@ -1,0 +1,4 @@
+*.bin
+c.dSYM
+.cph
+*.out
