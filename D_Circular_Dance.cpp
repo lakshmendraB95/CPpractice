@@ -15,24 +15,18 @@ ll MOD = 998244353;
 #define max_v(v) *max_element(all_v(v));
 #define min_v(v) *min_element(all_v(v));
 
-ll x[200005];
-ll y[200005];
 
-vector <ll> arr[200005];
-int vis[200005];
+vector <int> arr[200005];
+int vis[20005];
 
 void build_graph(ll edges)
 {
     int a,b;
-    int i = 1;
     while(edges--)
     {
         cin>>a>>b;
         arr[a].push_back(b);
         arr[b].push_back(a);
-        x[i]=a;
-        y[i]=b;
-        i++;
     }
 }
 void dfs(int v)
@@ -43,10 +37,7 @@ void dfs(int v)
     {
         if(!vis[child])
         {
-            if(x[v]==child || y[v]==child)
-            {
             dfs(child);
-            }
         }
     }
 }
@@ -54,10 +45,9 @@ void dfs(int v)
 int main()
 {
     fast_cin();
-    ll n;
+    int n;
     cin>>n;
     build_graph(n);
-    
-    dfs(1);
+
     return 0;
 }

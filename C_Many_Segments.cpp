@@ -50,7 +50,7 @@ int main()
     }
     rep(i,t)
 {
-
+    if(br[i] )
 }
     return 0;
 }
