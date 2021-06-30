@@ -4,7 +4,7 @@ using namespace std;
  
 typedef long long ll;
 ll MOD = 998244353;
-#define rep(i,e) for(ll i = 1; i <= e; i++)
+#define rep(i,e) for(ll i = 0; i < e; i++)
 #define endl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<endl
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
@@ -14,41 +14,27 @@ ll MOD = 998244353;
 #define min_a(a,n) *min_element(all_a(a,n));
 #define max_v(v) *max_element(all_v(v));
 #define min_v(v) *min_element(all_v(v));
-
-
-vector <int> arr[200005];
-int vis[20005];
-
-void build_graph(ll edges)
-{
-    int a,b;
-
-    while(edges--)
-    {
-        cin>>a>>b;
-        arr[a].push_back(b);
-        arr[b].push_back(a);
-    }
-}
-void dfs(int v)
-{
-    vis[v]=1;
-    cout<<v<<" ";
-    for(int child : arr[v])
-    {
-        if(!vis[child])
-        {
-            dfs(child);
-        }
-    }
-}
+ 
 
 int main()
 {
     fast_cin();
     int n;
-    cin>>n;
-    build_graph(n);
-    dfs(1);
+    cin>>n
+    int y;
+    vector<int> v,q;
+    vector<int> ans;
+    rep(i,n)
+    {
+        cin>>y;
+        v.push_back(y);
+        q.push_back(y);
+    }
+    sort(all_v(q));
+    ll sum=0;
+    for(auto &it : q)
+    {
+        sum+=it;
+    }
     return 0;
 }
