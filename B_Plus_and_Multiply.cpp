@@ -40,39 +40,6 @@ int main()
         ll a,b,n;
         cin>>n>>a>>b;
         ll x =1;
-        if(a==1)
-        {
-            if(b==1)
-            {
-                cout<<"Yes"<<endl;
-            }
-            else
-            {
-            n--;
-            if(n%b)
-            {
-                cout<<"No"<<endl;
-            }
-            else
-            {
-                cout<<"Yes"<<endl;
-            }
-            }
-        }
-        else if(b==1)
-        {
-            cout<<"Yes"<<endl;
-        }
-        else if (a==n || b==n-1)
-        {
-            cout<<"Yes"<<endl;
-        }
-        else if ((a>n || b>n)&& n!=1)
-        {
-            cout<<"NO"<<endl;
-        } 
-        else
-        {
         search(n,a,b,x);
         int count = 0;
         for(auto &it :v)
@@ -80,7 +47,6 @@ int main()
             if(it==n)
             {
                 count=1;
-                break;
             }
         }
         v.clear();
@@ -91,7 +57,6 @@ int main()
         else
         {
             cout<<"No"<<endl;
-        }
         }
     }
     
