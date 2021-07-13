@@ -19,30 +19,33 @@ ll MOD = 998244353;
 int main()
 {
     fast_cin();
-    int n;
-    cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
-    rep(i,n)
+    string s;
+    cin>>s;
+    int count=0;
+    int count1=0;
+    reverse(s.begin(),s.end());
+    for(int i = 0 ; i<s.length();i++)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        if(s[i]=='1')
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            count1++;
         }
-    }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
         
-        cout<<it<<" ";
-
+    }
+    if(s=="0")
+    {
+        cout<<0;
+    }
+    else
+    {
+    if(count1>1)
+    {
+        cout<<ceil(float(s.size())/2);
+    }
+    else
+    {
+    cout<<ceil((float(s.size())-1)/2);
+    }
     }
     return 0;
 }

@@ -19,30 +19,38 @@ ll MOD = 998244353;
 int main()
 {
     fast_cin();
-    int n;
-    cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
-    rep(i,n)
+    int n,x1,y1,x2,y2;
+    cin>>n>>x1>>y1>>x2>>y2;
+    string s;
+    cin>>s;
+    int i;
+    for(  i = 0 ; i<n && !(x1==x2 && y1==y2) ; i=i+0)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        if(s[i]=='S' && y2<y1)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            y1--;
         }
+        else if (s[i]=='N' && y1<y2)
+        {
+            y1++;
+        }
+        else if(s[i]=='E'&& x1<x2)
+        {
+            x1++;
+        }
+        else if(s[i]=='W' && x2<x1)
+        {
+            x1--;
+        }
+		i++;
     }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
+    if(x1==x2 && y1==y2)
     {
-        
-        cout<<it<<" ";
-
+        cout<<i<<endl;
+    }
+    else
+    {
+        cout<<-1;
     }
     return 0;
 }

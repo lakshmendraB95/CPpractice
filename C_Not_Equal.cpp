@@ -3,7 +3,7 @@
 using namespace std;
  
 typedef long long ll;
-ll MOD = 998244353;
+ll MOD = 1e9+7;
 #define rep(i,e) for(ll i = 0; i < e; i++)
 #define endl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<endl
@@ -21,28 +21,19 @@ int main()
     fast_cin();
     int n;
     cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
+    ll arr[n];
+    ll pr=1;
+    map<int,int> mp;
     rep(i,n)
     {
         cin>>arr[i];
     }
-    for(int i = n-1 ; i>=0 ; i--)
+    sort(arr,arr+n);
+    rep(i,n)
     {
-        if(!s.count(arr[i]))
-        {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
-        }
+        pr*=(arr[i]-i);
+        pr=pr%MOD;
     }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
-    }
+    cout<<pr;
     return 0;
 }

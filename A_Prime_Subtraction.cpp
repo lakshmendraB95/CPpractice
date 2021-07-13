@@ -19,30 +19,20 @@ ll MOD = 998244353;
 int main()
 {
     fast_cin();
-    int n;
-    cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
-    rep(i,n)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        ll a,b;
+        cin>>a>>b;
+        if(a-b==1)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            cout<<"NO"<<endl;
         }
-    }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
+        else
+        {
+            cout<<"YES"<<endl;
+        }
     }
     return 0;
 }

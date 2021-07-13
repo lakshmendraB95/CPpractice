@@ -21,28 +21,20 @@ int main()
     fast_cin();
     int n;
     cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
+    ll arr[n];
+    ll sum= 0 ;
     rep(i,n)
     {
         cin>>arr[i];
     }
-    for(int i = n-1 ; i>=0 ; i--)
+    sort(arr,arr+n);
+    rep(i,n)
     {
-        if(!s.count(arr[i]))
+        if((n-i)*arr[i]>sum)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            sum= (n-i)*arr[i];
         }
     }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
-    }
+    cout<<sum;
     return 0;
 }

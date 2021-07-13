@@ -19,30 +19,23 @@ ll MOD = 998244353;
 int main()
 {
     fast_cin();
-    int n;
-    cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
-    rep(i,n)
+    int t;
+    cin>>t;
+    while (t--)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        int n;
+        cin>>n;
+        ll arr[n];
+        ll sum=0;
+        rep(i,n)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            cin>>arr[i];
+            sum+=arr[i];
         }
+        sort(arr,arr+n,greater<int>());
+        sum =  sum-arr[0];
+        cout<<sum-arr[0];
     }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
-    }
+    
     return 0;
 }

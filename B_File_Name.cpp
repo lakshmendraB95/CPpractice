@@ -21,28 +21,25 @@ int main()
     fast_cin();
     int n;
     cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
+    string s;
+    cin>>s;
+    int answer =0 ;
     rep(i,n)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        int count  =0;
+        if(s[i]=='x')
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            while(s[i]=='x' && i<n)
+            {
+                count++;
+                i++;
+            }
+        }
+        if(count>2)
+        {
+            answer+=count-2;
         }
     }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
-    }
+    cout<<answer;
     return 0;
 }

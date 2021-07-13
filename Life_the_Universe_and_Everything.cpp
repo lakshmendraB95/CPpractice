@@ -20,29 +20,16 @@ int main()
 {
     fast_cin();
     int n;
-    cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
-    rep(i,n)
+    while(cin>>n)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        if(n==42)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            break;
         }
-    }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
+        else
+        {
+            cout<<n<<endl;
+        }
     }
     return 0;
 }

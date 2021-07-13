@@ -22,27 +22,25 @@ int main()
     int n;
     cin>>n;
     int arr[n];
-    set<int> s;
-    vector <int> ans;
+    int m=INT_MAX;
+    int answer;
     rep(i,n)
     {
         cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        if(arr[i]<m)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            m=arr[i];
+            answer = i+1;
         }
     }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
+    if(n==1 || (n==2 && arr[0]==arr[1]))
     {
-        
-        cout<<it<<" ";
-
+        cout<<-1;
+    } 
+    else
+    {
+        cout<<1<<endl;
+        cout<<answer;
     }
     return 0;
 }

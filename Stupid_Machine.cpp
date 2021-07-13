@@ -19,30 +19,35 @@ ll MOD = 998244353;
 int main()
 {
     fast_cin();
-    int n;
-    cin>>n;
-    int arr[n];
-    set<int> s;
-    vector <int> ans;
-    rep(i,n)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        cin>>arr[i];
-    }
-    for(int i = n-1 ; i>=0 ; i--)
-    {
-        if(!s.count(arr[i]))
+        ll n;
+        cin>>n;
+        int arr[n];
+        ll min;
+        min  = -1;
+        ll answer =0;
+        rep(i,n)
         {
-            s.insert(arr[i]);
-            ans.push_back(arr[i]);
+            cin>>arr[i];
+            if(min==-1)
+            {
+                min = arr[i];
+                answer += arr[i] ;
+            }
+            else if(arr[i]<=min)
+            {
+                min=arr[i];
+                answer+=arr[i];
+            }
+            else if(arr[i]>min)
+            {
+                answer+=min;
+            }
         }
-    }
-    reverse(ans.begin(),ans.end());
-    cout<<ans.size()<<endl;
-    for(auto &it:ans)
-    {
-        
-        cout<<it<<" ";
-
+        cout<<answer<<endl;
     }
     return 0;
 }
