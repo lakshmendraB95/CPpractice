@@ -14,11 +14,11 @@ ll MOD = 998244353;
 #define min_a(a,n) *min_element(all_a(a,n));
 #define max_v(v) *max_element(all_v(v));
 #define min_v(v) *min_element(all_v(v));
- 
- 
+
+
 vector <int> arr[100001];
 int vis[100001];
- 
+
 void build_graph(ll edges)
 {
     int a,b;
@@ -40,11 +40,31 @@ void dfs(int v)
         }
     }
 }
- 
+
 int main()
 {
     fast_cin();
-   build_graph(3);
-   dfs(3);
+    int n,m;
+    cin>>n>>m;
+    ll arr[n+1];
+    ll sum = 0;
+    ll x;
+    vector<pair<ll,ll> > mp;
+    for(int i = 1 ; i<=n ; i++)
+    {
+        cin>>x;
+        mp.push_back(make_pair(x,i));
+    }
+    sort(mp.begin(),mp.end());
+    build_graph(m);
+    for(auto &it : mp)
+    {
+        if(!vis[it.second])
+        {
+            sum+= it.first;
+            dfs(it.second);
+        }
+    }
+    cout<<sum;
     return 0;
 }

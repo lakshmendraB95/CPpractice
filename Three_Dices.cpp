@@ -15,36 +15,25 @@ ll MOD = 998244353;
 #define max_v(v) *max_element(all_v(v));
 #define min_v(v) *min_element(all_v(v));
  
- 
-vector <int> arr[100001];
-int vis[100001];
- 
-void build_graph(ll edges)
-{
-    int a,b;
-    while(edges--)
-    {
-        cin>>a>>b;
-        arr[a].push_back(b);
-        arr[b].push_back(a);
-    }
-}
-void dfs(int v)
-{
-    vis[v]=1;
-    for(int child : arr[v])
-    {
-        if(!vis[child])
-        {
-            dfs(child);
-        }
-    }
-}
- 
+
 int main()
 {
     fast_cin();
-   build_graph(3);
-   dfs(3);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int a,b;
+        cin>>a>>b;
+        if(a+b>=6)
+        {
+            cout<<0<<endl;
+        }
+        else
+        {
+        int c = 6-(a+b);
+        cout<<fixed<<setprecision(6)<<c/float(6)<<endl;
+        }
+    }
     return 0;
 }

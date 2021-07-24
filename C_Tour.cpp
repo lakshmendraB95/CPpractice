@@ -4,7 +4,7 @@ using namespace std;
  
 typedef long long ll;
 ll MOD = 998244353;
-#define rep(i,e) for(ll i = 0; i < e; i++)
+#define rep(i,e) for(ll i = 0; i <e; i++)
 #define endl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<endl
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
@@ -14,11 +14,11 @@ ll MOD = 998244353;
 #define min_a(a,n) *min_element(all_a(a,n));
 #define max_v(v) *max_element(all_v(v));
 #define min_v(v) *min_element(all_v(v));
- 
- 
+
+
 vector <int> arr[100001];
 int vis[100001];
- 
+int c =0;
 void build_graph(ll edges)
 {
     int a,b;
@@ -26,9 +26,9 @@ void build_graph(ll edges)
     {
         cin>>a>>b;
         arr[a].push_back(b);
-        arr[b].push_back(a);
     }
 }
+
 void dfs(int v)
 {
     vis[v]=1;
@@ -39,12 +39,29 @@ void dfs(int v)
             dfs(child);
         }
     }
+
 }
- 
+
 int main()
 {
     fast_cin();
-   build_graph(3);
-   dfs(3);
-    return 0;
+    int n,m;
+    cin>>n>>m;
+    build_graph(m);
+    for(int  i = 1 ; i<=n ; i++)
+    {
+        for(int  j = 1 ;j<= n ; j++) 
+        {
+            vis[j]=0;
+        }
+        dfs(i);
+        for(int j = 1 ; j<= n ; j++)
+        {
+            if(vis[j])
+            {
+            c++;
+            }
+        }
+    }
+    cout<<c;
 }

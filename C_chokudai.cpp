@@ -3,7 +3,7 @@
 using namespace std;
  
 typedef long long ll;
-ll MOD = 998244353;
+ll MOD = 1e9+7;
 #define rep(i,e) for(ll i = 0; i < e; i++)
 #define endl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<endl
@@ -15,36 +15,32 @@ ll MOD = 998244353;
 #define max_v(v) *max_element(all_v(v));
 #define min_v(v) *min_element(all_v(v));
  
- 
-vector <int> arr[100001];
-int vis[100001];
- 
-void build_graph(ll edges)
-{
-    int a,b;
-    while(edges--)
-    {
-        cin>>a>>b;
-        arr[a].push_back(b);
-        arr[b].push_back(a);
-    }
-}
-void dfs(int v)
-{
-    vis[v]=1;
-    for(int child : arr[v])
-    {
-        if(!vis[child])
-        {
-            dfs(child);
-        }
-    }
-}
- 
+
 int main()
 {
     fast_cin();
-   build_graph(3);
-   dfs(3);
+    string s;
+    string answer = "chokudai";
+    cin>>s;
+    int count =1;
+    int count1=0;
+    for(int i =0 ; i<answer.length(); i++)
+    {
+        count1=0;
+        for(int j = i ; j<s.length()-i; j++)
+        {
+            if(s[j]==answer[i])
+            {
+                count1++;
+            }
+        }
+        count*=count1;
+        count=count%MOD;
+        if(!count)
+        {
+            break;
+        }
+    }
+    cout<<count;
     return 0;
 }
