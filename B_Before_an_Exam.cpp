@@ -14,53 +14,55 @@ ll MOD = 998244353;
  
 void solve()
 {
-    int n;
-    cin>>n;
-    vector<pair<int,int> > v;
-    int x;
+    ll n,sum;
+    cin>>n>>sum;
+    ll ans[n];
+    ll mx[n];
+    ll max_sum,min_sum;
+    max_sum=min_sum=0;
     rep(i,n)
     {
-        cin>>x;
-        v.push_back({x,i+1});
+        cin>>ans[i]>>mx[i];
+        min_sum+=ans[i];
+        max_sum+=mx[i];
     }
-    sort(v.begin(),v.end());
-    int count=0;
-    for(int i = 0 ; i<n ; i++)
+    if(min_sum>sum || max_sum<sum)
     {
-        int flag = 0;
-        for(int j = i+1 ; j<n ; j++)
+        cout<<"NO";
+    }
+    else
+    {
+        cout<<"YES"<<endl;
+        sum-=min_sum;
+        for(int i = 0 ; i<n ; i++)
         {
-            ll a= v[i].first*v[j].first;
-            if( a <= n+n-1)
+            if(sum)
             {
-                if(v[i].second+v[j].second == a)
-                {
-                    count++;
-                }
-                flag=1;
+                ll x = min(sum,mx[i]-ans[i]);
+                ans[i]+=x;
+                sum-=x;
             }
             else
             {
                 break;
             }
         }
-        if(!flag)
+        rep(i,n)
         {
-            break;
+            cout<<ans[i]<<" ";
         }
     }
-    cout<<count<<endl;
 }
 
 int main()
 {
     fast_cin();
-   ll t;
-    cin >> t;
- while(t--)
- {
- solve();
-  }
+   // ll t;
+    //cin >> t;
+ //while(t--)
+ // {
  // solve();
+  //}
+ solve();
     return 0;
 }

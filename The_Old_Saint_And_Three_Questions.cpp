@@ -11,48 +11,45 @@ ll MOD = 998244353;
 #define modadd(a,b,c)     ((a%c)+(b%c))%c
 #define modmul(a,b,c)     ((a%c)*(b%c))%c
 #define modsub(a,b,c)     ((a%c)-(b%c))%c
-
-int n,m;
-int arr[201][201];
- int minPath(int i,int j)
-        {
-        if(i>n-1 || j>m-1)
-        {
-            return INT32_MAX;
-        }
-        else if(i==n-1 && j==m-1)
-        {
-            return arr[i][j];
-        }
-        else
-        {
-            return arr[i][j] + min(minPath(i+1,j),minPath(i,j+1));
-        }
-        }
  
 void solve()
 {
-    cin>>n>>m;
-    rep(i,n)
+    int n;
+    cin>>n;
+    map<int,int> mp1,mp2;
+    for(int i= 0 ; i< n ; i++)
     {
-        rep(j,m)
+        mp1[0]=mp1[1]=mp2[1]=mp2[0]=0;
+        for(int j =0 ; j<2 ;j++)
         {
-            cin>>arr[i][j];
+            int x,y,z;
+            cin>>x>>y>>z;
+            if(!j)
+            {
+            mp1[x]++;
+            mp1[y]++;
+            mp1[z]++;
+            }
+            else
+            {
+            mp2[x]++;
+            mp2[y]++;
+            mp2[z]++;
+            }
+        }
+        if(mp1[0]==mp2[0])
+        {
+            cout<<"Pass"<<endl;
+        }
+        else
+        {
+            cout<<"Fail"<<endl;
         }
     }
-    cout<<minPath(0,0);
-
 }
 
 int main()
 {
-    fast_cin();
-   // ll t;
-    //cin >> t;
- //while(t--)
- // {
- // solve();
-  //}
  solve();
     return 0;
 }

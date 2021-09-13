@@ -11,37 +11,54 @@ ll MOD = 998244353;
 #define modadd(a,b,c)     ((a%c)+(b%c))%c
 #define modmul(a,b,c)     ((a%c)*(b%c))%c
 #define modsub(a,b,c)     ((a%c)-(b%c))%c
-
-int n,m;
-int arr[201][201];
- int minPath(int i,int j)
-        {
-        if(i>n-1 || j>m-1)
-        {
-            return INT32_MAX;
-        }
-        else if(i==n-1 && j==m-1)
-        {
-            return arr[i][j];
-        }
-        else
-        {
-            return arr[i][j] + min(minPath(i+1,j),minPath(i,j+1));
-        }
-        }
  
 void solve()
 {
-    cin>>n>>m;
+    int n;
+    cin>>n;
+    int x;
+    vector<pair<int,int> > a,b;
     rep(i,n)
     {
-        rep(j,m)
+        cin>>x;
+        a.push_back({x,i+1});
+    }
+    rep(i,n)
+    {
+        cin>>x;
+        b.push_back({x,i+1});
+    }
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    map<int,int> mp;
+    int count=0;
+    for(int i = 0  ; i<n ; i++)
+    {
+        int x=a[i].second-b[i].second;
+        if(x>0)
         {
-            cin>>arr[i][j];
+            mp[-x]++;
+            mp[n-x]++;
+        }
+        else if(x<0)
+        {
+            mp[-x]++;
+            mp[-(n+x)]++;
+        }
+        else
+        {
+            mp[0]++;
         }
     }
-    cout<<minPath(0,0);
-
+    int ans=0;
+    for(auto it:mp)
+    {
+        if(it.second>=ans)
+        {
+            ans=it.second;
+        }
+    }
+    cout<<ans<<endl;
 }
 
 int main()

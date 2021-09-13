@@ -16,40 +16,49 @@ void solve()
 {
     int n;
     cin>>n;
-    vector<pair<int,int> > v;
-    int x;
-    rep(i,n)
+   int arr[n];
+   rep(i,n)
+   {
+       cin>>arr[i];
+   }
+   sort(arr,arr+n);
+//    rep(i,n)
+//    {
+//        cout<<arr[i]<<" ";
+//    }
+//    cout<<endl;
+    int ans[n];
+    int j=(n-1)/2;
+    ans[0]=arr[j];
+    int k,l;
+    k=l=1;
+    for(int i = 1 ; i< n ; i++)
     {
-        cin>>x;
-        v.push_back({x,i+1});
-    }
-    sort(v.begin(),v.end());
-    int count=0;
-    for(int i = 0 ; i<n ; i++)
-    {
-        int flag = 0;
-        for(int j = i+1 ; j<n ; j++)
+        if(i%2==0)
         {
-            ll a= v[i].first*v[j].first;
-            if( a <= n+n-1)
-            {
-                if(v[i].second+v[j].second == a)
-                {
-                    count++;
-                }
-                flag=1;
-            }
-            else
-            {
-                break;
-            }
-        }
-        if(!flag)
+        if(j-k>=0)
         {
-            break;
+        ans[i]=arr[j-k];
+        k++;
         }
+        else
+        {
+            ans[i]=arr[j+l];
+            l++;
+        }
+      }
+        else
+        {
+            ans[i]=arr[j+l];
+            l++;
+        }
+
     }
-    cout<<count<<endl;
+     rep(i,n)
+        {
+            cout<<ans[i]<<" ";
+        }
+        cout<<endl;
 }
 
 int main()

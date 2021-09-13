@@ -11,45 +11,48 @@ ll MOD = 998244353;
 #define modadd(a,b,c)     ((a%c)+(b%c))%c
 #define modmul(a,b,c)     ((a%c)*(b%c))%c
 #define modsub(a,b,c)     ((a%c)-(b%c))%c
+
+bool isPrime(int n)
+{
+    // Corner case
+    if (n <= 1)
+        return false;
+ 
+    // Check from 2 to square root of n
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return false;
+ 
+    return true;
+}
  
 void solve()
 {
     int n;
     cin>>n;
-    vector<pair<int,int> > v;
-    int x;
-    rep(i,n)
+    if(isPrime(n))
     {
-        cin>>x;
-        v.push_back({x,i+1});
+        cout<<1<<" " <<n-1<<endl;
     }
-    sort(v.begin(),v.end());
-    int count=0;
-    for(int i = 0 ; i<n ; i++)
+    else
     {
-        int flag = 0;
-        for(int j = i+1 ; j<n ; j++)
+        if(!(n%2))
         {
-            ll a= v[i].first*v[j].first;
-            if( a <= n+n-1)
+            cout<<n/2<<" "<<n/2<<endl;
+            return;
+        }
+        int ans1,ans2;
+        for(int i=2;i*i<=n;i++)
+        {
+            if(n%(i)==0)
             {
-                if(v[i].second+v[j].second == a)
-                {
-                    count++;
-                }
-                flag=1;
-            }
-            else
-            {
+                ans1=i;
                 break;
             }
         }
-        if(!flag)
-        {
-            break;
-        }
+        ans2=n/ans1;
+        cout<<ans2<<" "<<n-ans2<<endl;
     }
-    cout<<count<<endl;
 }
 
 int main()

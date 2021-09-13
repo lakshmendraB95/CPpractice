@@ -16,40 +16,34 @@ void solve()
 {
     int n;
     cin>>n;
-    vector<pair<int,int> > v;
+    map<int,int> mp;
+    int ans=0;
+    int a = 0;
     int x;
     rep(i,n)
     {
         cin>>x;
-        v.push_back({x,i+1});
+        mp[x]++;
     }
-    sort(v.begin(),v.end());
-    int count=0;
-    for(int i = 0 ; i<n ; i++)
+    for(auto &it : mp)
     {
-        int flag = 0;
-        for(int j = i+1 ; j<n ; j++)
+        ans+=it.second/it.first;
+        it.second%=it.first;
+    }
+    for(auto &it : mp)
+    {
+        a+=it.second;
+        // cout<<it.first<<" "<<it.second<<endl;
+        if(it.second>=1 && it.first<=a)
         {
-            ll a= v[i].first*v[j].first;
-            if( a <= n+n-1)
-            {
-                if(v[i].second+v[j].second == a)
-                {
-                    count++;
-                }
-                flag=1;
-            }
-            else
-            {
-                break;
-            }
-        }
-        if(!flag)
-        {
-            break;
+        ans+=((a)/it.first);
+        it.second%= (a/it.first);
+        a%=it.first;
+        a+=it.second;
         }
     }
-    cout<<count<<endl;
+    // cout<<a<<endl;
+    cout<<ans<<endl;
 }
 
 int main()
